@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/search.css" rel="stylesheet">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+    </style>
+</head>
+<body>
+    <%- include("partials/navbar.ejs") %>
+
+     <% if (books) { %>
+        <form method="post" action="/submitSummary" class="summary-form">
+            <div class="main">
+                <div class="heading">
+                    <h2 class="book-title"><%= books.book_title %></h2>
+                    <h3 class="author">- <%= books.author %></h3>
+                </div>
+            
+                <div class="body-content">
+                    <p class="genre">Genre: <%= books.genre %></p>
+                    <p class="rating">⭐ Rating: <%= books.rating %>/5⭐</p>
+                    <p class="date">Date Added: <%= books.date_added %> </p>
+               
+                    
+                  
+                     <label for="genre">Add Summary for your Book 📚<br><span class="genre" style="font-size: 0.8vw; margin-top:8px" >(Optional)</span> </label>
+                    
+                     <input type="hidden" name="book_id" value="<%= books.book_id %>">
+                     <input type="hidden" name="book_title" value="<%= books.book_title %>">
+
+                     <input type="text" name="summary" class="input_form">
+                     <button class="submit-btn"style="width:8vw; height:7vh"> Submit</button>
+                   
+                  </form>
+                </div>
+            </div>
+
+
+
+        </form>
+
+    
+        
+
+    
+    <% } else { %>
+    <p>No books found.</p>
+<% } %>
+
+ 
+        
+       
+
+  
+    
+</body>
+</html>

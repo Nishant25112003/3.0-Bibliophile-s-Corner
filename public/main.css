@@ -1,0 +1,428 @@
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: #fffddd;
+}
+html {
+  margin: 0px;
+}
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 400px;
+  gap: 10px;
+  width: 100%;
+  height: fit-content;
+  box-sizing: border-box;
+}
+.section1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+  padding: 15px 0;
+  padding-bottom: 10px;
+}
+.main_lato_medium {
+  height: 60px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.6vw;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #170f18;
+}
+.main_lato {
+  height: 48px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2.8vw;
+  font-size: clamp(24px, 3vw, 50px);
+  line-height: 48px;
+  text-align: center;
+  color: #170f18;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.subheading {
+  height: 29px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(22px, 1.5vw, 24px);
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #3b3534;
+  margin: 0px;
+}
+.body {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(20px, 1vw, 20px); /* Sets a minimum of 14px, a preferred size of 1vw, and a maximum of 20px */
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #242424;
+  margin-top: 5px;
+  letter-spacing: 1px;
+}
+.add_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 17vw;
+  gap: 10px;
+  padding: 15px 35px;
+  background: #f5c252;
+  border: 2.8px solid #3b3534;
+  border-radius: 8px;
+
+  height: 65px;
+}
+.add_button > p {
+  width: 17vw;
+  min-width: 150px;
+  height: fit-content;
+  font-family: Lato;
+  font-style: normal;
+  font-size: clamp(20px, 1vw, 40px);
+  
+  text-align: center;
+  font-weight: 500;
+  min-width: 200px;
+
+  color: #202020;
+}
+.add_button {
+  transition: transform 0.3s, box-shadow 0.3s ease;
+}
+.add_button:hover {
+  transform: translateY(-5px);
+  box-shadow: 2px 4px 4px rgba(51, 51, 51, 0.5);
+}
+.dropdown_content a {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
+  color: #626262;
+  background-color: #fffee4;
+  text-align: left;
+  text-decoration: none;
+}
+.dropdown_content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  min-width: 160px;
+  z-index: 1;
+  padding: 20px 10px;
+  gap: 12px;
+  flex-direction: column;
+  display: flex;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+}
+.droplinks {
+  transition: text-decoration 0.3s ease;
+}
+.droplinks:hover {
+  text-decoration: underline;
+}
+
+.browse {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: center;
+  padding: 20px 150px;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 1.5s;
+ 
+}
+
+.body, .heading, .subheading {
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.heading,
+.subheading,
+.body {
+  opacity: 1;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.overlay-content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 60px;
+    gap: 40px;
+    position: relative;
+    max-width: 400px;
+    min-width:300px;
+    background-color: #FFFEDD; /* Creamy ivory background */
+    border-radius: 8px;
+    height: fit-content;
+    box-shadow: 5px 10px 25px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    border: 3px solid #5e5a5a; /* Solid border with a dark color */
+}
+
+
+.addABook {
+   
+    margin-bottom: 20px;
+   margin: 0 auto;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #1f1b1b;
+  margin-top: 10px;
+}
+.input_form label {
+  margin: 0 auto;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  color: #272322;
+  padding-top: 5px;
+  text-align: left;
+}
+.input_form input {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  padding: 1px 10px;
+  gap: 10px;
+  font-size: 18px;
+  width: 300px;
+  height: 48px;
+  border: 1px solid #3b3534;
+  border-radius: 10px;
+  background-color: #b2e9ff;
+}
+.close-button {
+  font-size: 30px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+#submit_button {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 40px;
+    margin: 0 auto;
+    border: 1px solid #3B3534;
+    background-color: #fff5e1;
+    border-radius: 5px;
+    font-size: 16px; /* Ensure the text is properly sized */
+    cursor: pointer; /* Show pointer cursor on hover */
+    width: fit-content;
+    margin-top: 15px;
+}
+#submit_button{
+    transition: background-color 0.1s ease;
+}
+#submit_button:hover{
+    background-color: #F5C252;
+}
+.input_form{
+    padding-top: 20px;
+}
+
+.sub-heading h2 {
+  height: 29px;
+  font-family: "Lato";
+  font-style: normal;
+  font-size: clamp(20px,1.8vw, 30px);
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #3b3534;
+  margin: 0px;
+  font-weight: 600;
+  margin-top: 40px;
+}
+.sub-heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%; 
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  flex-direction: row;
+  padding: 35px 25px;
+  margin-top: 10px;
+  gap:15px;
+ 
+  
+}
+#genres_Added{
+  
+  background-color: #FDCCB5;
+  
+}
+
+#recently_Added{
+  background-color: #b2e9ff;
+ 
+}
+#favourites_Added{
+  background-color: #B5E6B5;
+
+}
+.card {
+  width: 257px;
+  background-color: white;
+  border: solid rgb(243, 163, 163) 2.8px;  
+  border-radius: 6px;
+  height: 300px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  background-color: #f5f5f5;
+}
+
+.card-image {
+  width: 100%; /* Full width of the card */
+  height: auto; /* Maintain aspect ratio */
+  background-color: rgb(255, 255, 255);
+
+}
+.card-content {
+  padding: 15px; 
+}
+.card-title {
+  font-size: 1.5em; /* Larger font size for title */
+  margin: 0; /* Remove default margin */
+  color: #272727; /* Dark color for text */
+  font-family: 'Lato';
+  }
+
+.card-author,
+.card-date,
+.card-rating,
+.card-genre {
+  font-size: 1em; /* Slightly smaller font size */
+  margin: 10px 0; /* Margin between items */
+  color: #4e4e4e; /* Gray color for text */
+  font-family: 'Lato';
+  font-weight: 600;
+}
+.card-summary {
+  background-color: #FFCC47; /* Background color */
+  color: #3B3534; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 15px; /* Padding inside the button */
+  font-size: 0.9em; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin-top: 10px; /* Margin above the button */
+  height: 50px;
+  width: fit-content;
+  border: 2px solid #837f7e;
+  
+}
+
+.heart-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent; /* Transparent background */
+  border: none; /* Remove default border */
+  font-size: 1.5em; /* Icon size */
+  color: #b8b8b8; /* Default heart color (light gray) */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: color 0.3s ease; /* Smooth transition for color */
+  margin-top: 10px;
+}
+.heart-button i {
+  font-size: 1.4em; /* Increase the icon size */
+}
+.heart-button.filled {
+  color: #ff507c; /* Filled heart color (red) */
+}
+.fas.fa-heart {
+  color: #A3C4F3; /* Default color for non-favorites */
+}
+.fas.fa-heart.filled {
+  color: rgb(250, 103, 103);
+}
+.heart-button:focus {
+  outline: none; /* Remove default focus outline */
+}
+@keyframes fadeInDivs {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
+  }
+}
+.fade-in {
+  opacity: 1;
+}

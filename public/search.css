@@ -1,0 +1,126 @@
+/* Reset some default styles */
+body, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Main container styling */
+.main {
+    background-color: #ffece1; /* Light background color for contrast */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+/* Heading styling */
+.heading {
+    margin-bottom: 20px;
+}
+
+.book-title {
+        height: 60px;
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 2.3vw;
+        line-height: 60px;
+        
+        align-items: center;
+        text-align: center;
+        color: #170f18;
+        margin-top: 15px;
+}
+
+.author {
+    height: 29px;
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2vw;
+    line-height: 29px;
+    text-align: center;
+    color: #3b3534;
+    margin-top: 4x;
+}
+
+
+/* Body content styling */
+.body-content {
+    background-color: #fff; /* White background for the details section */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.genre, .rating, .date,.summary-form label {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp(18px, 1.2vw, 20px);
+    line-height: 27px;
+    text-align: center;
+    color: #242424;
+    margin-top: 15px;
+    letter-spacing: 1px;
+}
+
+/* Form styling */
+.summary-form {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.summary-form input[type="text"] {
+    margin-top: 15px;
+    width: 500px;
+   
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    height: 200px;
+    max-height: fit-content;
+    
+}
+
+.submit-btn {
+    background-color: #FFCC47; /* Golden yellow */
+    border: none;
+    color: #3B3534;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9vw;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #FFB700; /* Slightly darker yellow on hover */
+}
+
+.summary-form input  {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 1px 10px;
+    gap: 10px;
+    font-size: 18px;
+    width: 300px;
+    height: 48px;
+    border: 1px solid #3b3534;
+    border-radius: 10px;
+    background-color: #b2e9ff;
+}

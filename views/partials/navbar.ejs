@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/navbar.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar1">
+            <p class="quote Lato">📖  Recommended Reads: Dive into our Summer Reading List - From thrillers to heartwarming tales.  📖</p>
+        </div>
+        <div class="navbar2">
+            <div class="logo" style="display: flex; flex-direction:row; align-items:center">
+                <img src="/logo.png" style="height: 30px; width:30px; margin-right:5px">
+                <h3 class="h3"><span class="lato_medium">Bibliophile's</span><span class="lato">CORNER</h3>
+            </div>
+            <div class="nav-collection">
+                <ul class="links">
+                    <li class="li"><a class="li xyz" style="text-decoration: none;" href="/" >Home</a></li>
+                    <li class="li"><a class="li xyz" style="text-decoration: none "href="allBooks">Books</a></li>
+
+                    <div class="li dropdown" style="display: flex; align-items:center; flex-direction:column;">
+                        <li class="li" style="list-style: none;">Browse    <img src="/drop.png" style="margin-left:2px; height:5px"></li></li>
+                     
+                        <div class="dropdown_content" style="background-color: #FFFEE4; width:200px">
+                            <a href="#recentlyAdded" class="droplinks" id="recentlyAdded">Recently Added</a>
+                            <a href="#favourites" class="droplinks" id="favourites_link">Favourites</a>
+                            <a href="#genre" class="droplinks" id="genres_link">Genre</a>
+                        
+                          
+                        </div>
+                        
+                    </div>
+                    
+                </ul>
+                <form class="search-container" action="/search" method="post">
+                    <input type="text" placeholder="Search books" name="search_Book">
+                    <img class="icon" src="/icon.png">
+                </form>
+                
+            </div>
+            <button class="sign-up">Sign Up</button>
+        </div>
+    </nav>
+
+<script>
+
+    let dropdowns = document.getElementsByClassName('dropdown');
+    for (let i = 0; i < dropdowns.length; i++) {
+        let dropdown = dropdowns[i];
+        let dropdownContent = dropdown.getElementsByClassName('dropdown_content')[0];
+
+        dropdown.addEventListener('click', function () {
+            if (dropdownContent.style.display === 'none') {
+                dropdownContent.style.display = 'flex';
+
+            } else {
+                dropdownContent.style.display = 'none';
+               
+
+            }
+        });
+    }
+
+   
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('recentlyAdded').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('recentlyAddedAnimation').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('favourites_link').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('favourites_Added').scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+  
+   
+
+    
+   
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/search.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+    </style>
+</head>
+
+<body style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+    <%- include("partials/navbar.ejs") %>
+
+    <div class="cards" id="recently_Added" style="background-color: #FDCCB5; margin: 50px 100px; width: 80%; flex-direction: column; animation: none;">
+        <% books.forEach(book => { %>
+            <div class="card" style="border: solid 2.8px #ffe2d4; width: 100%; margin-top: 20px; height:fit-content">
+                <div class="card-content">
+                    <form action="/summary" method="post">
+                        <h2 class="card-title"><%= book.book_title %> - <%= book.author %></h2>
+                        <p class="card-genre">Genre: <%= book.genre %></p>
+                        <p class="card-rating">Rating: <%= book.rating %>/5 ⭐</p>
+                        <p class="card-date">Date Added: <%= book.date_added %> 📅</p>
+
+                        <input type="hidden" name="genre" value="<%= book.genre %>">
+                        <input type="hidden" name="rating" value="<%= book.rating %>">
+                        <input type="hidden" name="date_added" value="<%= book.date_added %>">
+                        <input type="hidden" name="book_title" value="<%= book.book_title %>">
+                        <input type="hidden" name="author" value="<%= book.author %>">
+
+                        <div style="display: flex; flex-direction: row; gap: 15px">
+                            <button type="submit" class="card-summary">Add Summary</button>
+                            <button class="heart-button">
+                                <i class="fas fa-heart <%= book.favourites ? 'filled' : '' %>"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</body>
+
+</html>

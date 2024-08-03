@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+    </style>
+</head>
+
+<body>
+    <%- include("partials/navbar.ejs") %>
+
+
+
+        <div class="home">
+            <div class="section1">
+                <div class="heading "><span class="main_lato_medium">Bibliophile's</span><span class="main_lato">CORNER
+                </div>
+                <p class="subheading">Discover, Read, Review - Your Personal Literary Heaven</p>
+                <p class="body">Welcome to Bibliophile's Corner, your go-to place for discovering, organizing, and
+                    sharing your love for books.<br>
+                    Explore curated collections, personalized recommendations, and insightful reviews. Join our
+                    community of book lovers and embark on an adventure through the pages of both classics and
+                    contemporary masterpieces. <br>
+                    At Bibliophile's Corner, every book has a story, and every reader has a place.
+                </p>
+            </div>
+
+            <button class="add_button" id="add_button">
+                <p class="add">Add Book to My Collection</p>
+            </button>
+
+            <div id="overlay" style="display: none;">
+                <div class="overlay-content">
+                    <span id="closeButton" class="close-button">&times;</span>
+                    <h3 class="addABook">Add a New Book</h3>
+
+                    <form action="/submit" method="post" class="input_form" enctype="multipart/form-data">
+                        <label for="bookTitle">Book Title: 📘</label><br>
+                        <input type="text" id="bookTitle" name="bookTitle" required><br>
+
+                        <label for="author">Author: 📝</label><br>
+                        <input type="text" id="author" name="author" required><br>
+
+                        <label for="genre">Genre: 📚</label><br>
+                        <input type="text" id="genre" name="genre" required><br>
+
+                        <label for="rating">Rating(/5): ⭐️⭐️⭐️</label><br>
+                        <input type="number" id="rating" name="rating" min="0" max="5" required><br>
+                        
+                        <div style="display:flex; width:100%; margin-bottom:15px; align-items:center">
+                            <label for="favourites" style="margin-left:0px; margin-right:10px">Add to Favourites: ❤️</label>
+                            <input type="checkbox" name="favourites" value="true" style="margin-right: 60px; height:30px; width:30px; border: 2px solid  #1f1b1b" >
+
+                        </div>
+                       
+
+                        <label for="photo">Upload a Photo:* 📷</label>
+                        <input type="file" id="photo" name="photo" accept="image/*" style="display: none;"><br>
+
+                    
+
+
+                        <button type="submit" id="submit_button">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <div class="browse">
+
+
+            
+           
+        
+        
+
+
+
+
+
+
+
+            <div class="sub-heading">
+                <h2 class="h2" class="subheading" id="recentlyAddedAnimation">Hot Off the Press 🔥</h2>
+                <div style="display: flex; justify-content:center; gap:10px; align-items:end;margin-right:12px">
+                   
+                </div>
+            </div>
+
+            <div class="cards" id="recently_Added " style="background-color: #FDCCB5;">
+                <% books.forEach(book=> { %>
+                    <div class="card" style=" border: solid 2.8px  #ffe2d4 ">
+                        <img src="<%= '/uploads/' + book.photoPath %> alt="book iamge" class="card-image">
+                        <div class="card-content">
+                         <form action="/summary" method="post" style="display: flex; flex-direction: column; justify-content: space-between; height: 240px; max-width:fit-content">
+                         <div>
+                           <h2 class="card-title"><%= book.book_title %> - <%= book.author %></h2>
+                            <p class="card-genre">Genre: <%= book.genre %></p>
+                           <p class="card-rating">Rating: <%= book.rating %>/5 ⭐</p>
+                           <p class="card-date">Date Added: <%= book.date_added %> 📅</p>
+        
+                           <input type="hidden" name="genre" value="<%= book.genre %>">
+                           <input type="hidden" name="rating" value="<%= book.rating %>">
+                           <input type="hidden" name="date_added" value="<%= book.date_added %>">
+                           <input type="hidden" name="book_title" value="<%= book.book_title %>">
+                           <input type="hidden" name="author" value="<%= book.author %>">
+                         </div>
+
+                         <div style="display: flex; flex-direction: row; gap: 15px; margin-top: auto;">
+                            <button type="submit" class="card-summary">Add Summary</button>
+                              <button class="heart-button">
+                              <i class="fas fa-heart <%= book.favourites ? 'filled' : '' %>"></i>
+                            </button>
+                         </div>
+                     </form>
+
+                    </div>
+              </div>
+          <% }); %>
+         </div>
+
+
+            <div class="sub-heading" style="margin-top:20px">
+                <h2 class="h2" class="subheading" id="favouritesAddedAnimation">Your Favorites 💖</h2>
+                <div style="display: flex; justify-content:center; gap:10px; align-items:end;margin-right:12px">
+                    
+                </div>
+            </div>
+
+            <div id="favourites_Added" class="cards" style="background-color: #FDCCB5;"> 
+                <% if (favouritesBooks) { %>
+                    <% favouritesBooks.forEach(favouriteBook => { %>
+                        <div class="card" style="border: solid #ffe8de 2.8px; background-color:white">
+                            <div class="card-content">
+                                <form action="/summary" method="post" style="display: flex; flex-direction: column; justify-content: space-between; height: 240px; max-width: fit-content;">
+                                    <div>
+                                        <h2 class="card-title"><%= favouriteBook.book_title %> - <%= favouriteBook.author %></h2>
+                                        <p class="card-genre">Genre: <%= favouriteBook.genre %></p>
+                                        <p class="card-rating">Rating: <%= favouriteBook.rating %>/5 ⭐</p>
+                                        <p class="card-date">Date Added: <%= favouriteBook.date_added %> 📅</p>
+                                    
+                                        <input type="hidden" name="genre" value="<%= favouriteBook.genre %>">
+                                        <input type="hidden" name="rating" value="<%= favouriteBook.rating %>">
+                                        <input type="hidden" name="date_added" value="<%= favouriteBook.date_added %>">
+                                        <input type="hidden" name="book_title" value="<%= favouriteBook.book_title %>">
+                                        <input type="hidden" name="author" value="<%= favouriteBook.author %>">
+                                    </div>
+                            
+                                    <div style="display: flex; flex-direction: row; gap: 15px; margin-top: auto;">
+                                        <button type="submit" class="card-summary">Add Summary</button>
+                                        <button class="heart-button">
+                                            <i class="fas fa-heart <%= favouriteBook.favourites ? 'filled' : '' %>"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </div>
+             
+
+            <div class="sub-heading" style="margin-top:20px" >
+                <h2 class="h2" class="subheading" id="favouritesAddedAnimation">In-Depth Insights 🧠</h2>
+                
+               
+            </div>
+            <div id="genres_Added" class="cards" style="padding: 10px 10px; gap:0px; border-radius:30px; min-height:150px; display:flex; align-items:center">
+                <% if (locals.summaries && locals.summaries.length > 0) { %>
+                    <% locals.summaries.forEach(summary => { %>
+                        <div class="card-content">
+                            <form action="/summary-selected" method="POST" class="summary-form">
+                                <input type="hidden" name="summary_id" value="<%= summary.book_id %>">
+                                <button class="card-title" style="font-size: 1.4em; border: none; background-color: white; width: 180px; height: 100px; border-radius: 20px" 
+                                    data-book-id="<%= summary.book_id %>">
+                                    <%= summary.book_title %>
+                                </button>
+                            </form>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p class="card-date" style="font-size: 1.1vw;"> No summaries available yet!</p>
+                <% } %>
+                
+            </div>
+            
+            
+
+
+            
+
+     
+
+
+
+
+
+
+
+            <div class="sub-heading" style="margin-top:20px">
+                <h2 class="h2" class="subheading">Explore by Genre 🎭</h2>
+               
+            </div>            
+
+            <div id="genres_Added"  class="cards" style="padding: 10px 10px; gap:0px; border-radius:30px">
+                <% if (locals.genres && locals.genres.length > 0) { %>
+                    <% genres.forEach(genre => { %>
+                        
+                      <div class="card-content">
+                          <form action="/genre-selected" method="POST" class="genre-form">
+                            <input type="hidden" name="genre" value="<%= genre %>">
+                             <button class="card-title" style="font-size: 1.2em; font-weight:600; border: none; background-color: white; width: 180px; height: 100px; border-radius: 20px" 
+                                data-genre="<%= genre %>">
+                                    
+                                <%= genre %>
+                             </button>
+                          </form>
+                            
+                        </div>
+                    <% }) %>
+                <% } %>
+            </div>
+
+
+
+
+             
+           
+
+       
+        
+
+        
+        
+    </div>
+
+
+
+
+        </div>
+
+
+
+     
+            
+      
+    
+            
+            
+
+
+
+
+
+
+
+            
+
+
+
+        <script>
+
+            let addButton = document.getElementById('add_button');
+            let overlay = document.getElementById('overlay');
+
+            addButton.addEventListener('click', function () {
+                overlay.style.display = 'flex';
+
+            });
+
+            let closeButton = document.getElementById('closeButton');
+            closeButton.addEventListener('click', function () {
+                overlay.style.display = 'none'
+            })
+
+            let submitButton = document.getElementById('submit_button')
+            submitButton.addEventListener('click', function () {
+                document.getElementById('overlay').style.display = 'none';
+
+
+            });
+
+            let bookTitle = document.getElementById('bookTitle');
+            let author = document.getElementById('author');
+            let genre = document.getElementById('genre');
+            let rating = document.getElementById('rating');
+
+            function handleInputEvent(inputElement) {
+                if (inputElement.value.trim() !== '') {
+                    inputElement.style.backgroundColor = '#fdccb5'; // Change color if input has text
+                } else {
+                    inputElement.style.backgroundColor = '#b2e9ff'; // Restore original color if input is empty
+                }
+            }
+
+            bookTitle.addEventListener('input', function () {
+                handleInputEvent(bookTitle);
+            });
+
+            author.addEventListener('input', function () {
+                handleInputEvent(author);
+            });
+
+            genre.addEventListener('input', function () {
+                handleInputEvent(genre);
+            });
+
+            rating.addEventListener('input', function () {
+                handleInputEvent(rating);
+            });
+
+
+
+             document.addEventListener('DOMContentLoaded', function() {
+        const genreButtons = document.querySelectorAll('.card-title');
+        
+        genreButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const genre = this.getAttribute('data-genre');
+                console.log('Genre clicked:', genre);
+
+                // Send the genre to the server using fetch
+                fetch('/genre-selected', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ genre: genre })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Server response:', data);
+                    // Optionally, handle the server response here
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+
+
+       
+
+      
+
+
+        </script>
+
+</body>
+
+</html>

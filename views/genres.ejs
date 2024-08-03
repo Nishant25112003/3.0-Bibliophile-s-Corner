@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+    </style>
+</head>
+<body>
+    <%- include("partials/navbar.ejs") %>
+    <div class="section1">
+        <div class="heading" style="display: flex; flex-direction:column; margin-top:25px">
+            <span class="main_lato_medium"><%= genre %></span>  <br>
+            <p class="subheading">Unveil the must-reads and timeless classics in "<%= genre %>"</p>
+        </div>
+
+       
+
+        <div class="cards" id="recently_Added" style="width:90%; margin-top:50px; background-color: #FDCCB5; padding: 50px 70px" >
+            <% books.forEach(book=> { %>
+                <div class="card" style=" border: solid 2.8px  #ffe4d8 ">
+                    <div class="card-content">
+                        <form action="/summary" method="post" style="display: flex; flex-direction: column; justify-content: space-between; height: 240px; max-width: fit-content;">
+                            <div>
+                                <h2 class="card-title"><%= book.book_title %> - <%= book.author %></h2>
+                                <p class="card-genre">Genre: <%= book.genre %></p>
+                                <p class="card-rating">Rating: <%= book.rating %>/5 ⭐</p>
+                                <p class="card-date">Date Added: <%= book.date_added %> 📅</p>
+                            
+                                <input type="hidden" name="genre" value="<%= book.genre %>">
+                                <input type="hidden" name="rating" value="<%= book.rating %>">
+                                <input type="hidden" name="date_added" value="<%= book.date_added %>">
+                                <input type="hidden" name="book_title" value="<%= book.book_title %>">
+                                <input type="hidden" name="author" value="<%= book.author %>">
+                            </div>
+                    
+                            <div style="display: flex; flex-direction: row; gap: 15px; margin-top: auto;">
+                                <button type="submit" class="card-summary">Add Summary</button>
+                                <button class="heart-button">
+                                    <i class="fas fa-heart <%= book.favourites ? 'filled' : '' %>"></i>
+                                </button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+                <% }); %>
+        </div>
+
+
+        
+       
+
+  
+    
+</body>
+</html>
